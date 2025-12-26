@@ -1,0 +1,16 @@
+import { useNavigate } from "react-router-dom";
+
+export default function SmsComplete() {
+  const navigate = useNavigate();
+
+  return (
+    <div style={{ padding: 20, textAlign: "center" }}>
+      <h2>送信完了</h2>
+      <p>SMSの送信が完了しました。</p>
+
+      <button onClick={() => navigate("/")}>
+        トップへ戻る
+      </button>
+    </div>
+  );
+}
