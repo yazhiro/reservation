@@ -7,7 +7,7 @@ export default function Sms() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const isValid = /^[0-9\-]+$/.test(phone) && phone.length >= 10;
+  const isValid = /^\+\d{10,15}$/.test(phone) && phone.length >= 10;
 
   const handleSend = async () => {
     if (!isValid || loading) return;
@@ -16,13 +16,14 @@ export default function Sms() {
     setError("");
 
     try {
-      const res = await fetch("/api/sms/send", {
+      const res = await fetch("https://xlkbn0o4ll.execute-api.ap-northeast-1.amazonaws.com/dev/sendSNS", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          phone: phone.replace(/-/g, ""),
+          phoneNumber: phone.replace(/-/g, ""),
+          message: '予約情報受け付けました',
         }),
       });
 
@@ -31,7 +32,7 @@ export default function Sms() {
       }
 
       // ✅ 成功 → 完了画面へ（戻れないようにする）
-      navigate("/sms/complete", { replace: true });
+      navigate("/smsComplete", { replace: true });
     } catch (e) {
       setError(e.message);
     } finally {

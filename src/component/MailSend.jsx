@@ -1,21 +1,15 @@
 import { useNavigate } from "react-router-dom";
 
 export default function Mail() {
-  const navigate = useNavigate();
-
-
+   const navigate = useNavigate();
 
   return (
-    <div style={{ padding: 20 }}>
-      <h2>予約リンク送信案内</h2>
+    <div style={{ padding: 20, textAlign: "center" }}>
+      <h2>送信完了</h2>
+      <p>メールの送信が完了しました。</p>
 
-<p>メールソフトから空メールを送信してください。
-    空メールを受け付けた後、
-    予約情報リンクを送信いたします。
-</p>
-
-      <button onClick={() => navigate('/')}>
-         TOP
+      <button onClick={() => navigate("/")}>
+        トップへ戻る
       </button>
     </div>
   );
